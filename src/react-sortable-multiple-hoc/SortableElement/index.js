@@ -1,9 +1,9 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { findDOMNode } from "react-dom"
-import invariant from "invariant"
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { findDOMNode } from 'react-dom'
+import invariant from 'invariant'
 
-import { provideDisplayName, omit } from "../utils"
+import { provideDisplayName, omit } from '../utils'
 
 let unselect = []
 // Export Higher Order Sortable Element Component
@@ -16,7 +16,7 @@ export default function sortableElement(
     state = {
       selected: false
     }
-    static displayName = provideDisplayName("sortableElement", WrappedComponent)
+    static displayName = provideDisplayName('sortableElement', WrappedComponent)
 
     static contextTypes = {
       manager: PropTypes.object.isRequired
@@ -94,7 +94,7 @@ export default function sortableElement(
     getWrappedInstance() {
       invariant(
         config.withRef,
-        "To access the wrapped instance, you need to pass in {withRef: true} as the second argument of the SortableElement() call"
+        'To access the wrapped instance, you need to pass in {withRef: true} as the second argument of the SortableElement() call'
       )
 
       return this.refs.wrappedInstance
@@ -131,7 +131,7 @@ export default function sortableElement(
     }
 
     render() {
-      const ref = config.withRef ? "wrappedInstance" : null
+      const ref = config.withRef ? 'wrappedInstance' : null
       const props = {}
       const item = this.props.item
 
@@ -151,8 +151,8 @@ export default function sortableElement(
       const component = (
         <WrappedComponent
           ref={ref}
-          className={this.state.selected ? this.helperClass : ""}
-          {...omit(this.props, "collection", "disabled", "index")}
+          className={this.state.selected ? this.helperClass : ''}
+          {...omit(this.props, 'collection', 'disabled', 'index')}
           onSelect={this.onSelect}
           {...props}
         />

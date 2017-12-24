@@ -1,5 +1,5 @@
-import React from "react"
-import { render } from "react-dom"
-import SortableComponent from "./SortableComponent"
+import React from 'react'
+import { render } from 'react-dom'
+import SortableComponent from './SortableComponent'
 
-render(<SortableComponent />, document.getElementById("root"))
+render(<SortableComponent />, document.getElementById('root'))

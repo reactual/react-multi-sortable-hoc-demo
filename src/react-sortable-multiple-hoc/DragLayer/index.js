@@ -4,8 +4,8 @@ import {
   getOffset,
   getElementMargin,
   clamp
-} from "../utils"
-import { closestRect, updateDistanceBetweenContainers } from "./utils"
+} from '../utils'
+import { closestRect, updateDistanceBetweenContainers } from './utils'
 
 let oldy = Infinity
 
@@ -54,8 +54,8 @@ export default class DragLayer {
       this.currentList = list
 
       this.axis = {
-        x: axis.indexOf("x") >= 0,
-        y: axis.indexOf("y") >= 0
+        x: axis.indexOf('x') >= 0,
+        y: axis.indexOf('y') >= 0
       }
       this.initialOffset = offset
       this.distanceBetweenContainers = {
@@ -84,7 +84,7 @@ export default class DragLayer {
   createHelper(parent, list) {
     const { node, collection } = list.manager.getActive()
     const { index } = node.sortableInfo
-    const fields = node.querySelectorAll("input, textarea, select")
+    const fields = node.querySelectorAll('input, textarea, select')
     const clonedNode = node.cloneNode(true)
     const margin = getElementMargin(node)
     const dimensions = list.props.getHelperDimensions({
@@ -96,26 +96,26 @@ export default class DragLayer {
     this.width = dimensions.width
     this.height = dimensions.height
     const clonedFields = [
-      ...clonedNode.querySelectorAll("input, textarea, select")
+      ...clonedNode.querySelectorAll('input, textarea, select')
     ] // Convert NodeList to Array
 
     this.offsetEdge = this.currentList.getEdgeOffset(node)
 
     clonedFields.forEach((field, index) => {
-      if (field.type !== "file" && fields[index]) {
+      if (field.type !== 'file' && fields[index]) {
         field.value = fields[index].value
       }
     })
 
     this.helper = parent.appendChild(clonedNode)
-    this.helper.style.position = "fixed"
+    this.helper.style.position = 'fixed'
 
     this.helper.style.top = `${this.boundingClientRect.top - margin.top}px`
     this.helper.style.left = `${this.boundingClientRect.left - margin.left}px`
     this.helper.style.width = `${this.width}px`
     this.helper.style.height = `${this.height}px`
-    this.helper.style.boxSizing = "border-box"
-    this.helper.style.pointerEvents = "none"
+    this.helper.style.boxSizing = 'border-box'
+    this.helper.style.pointerEvents = 'none'
 
     const { useWindowAsScrollContainer } = list.props
     const containerBoundingRect = this.scrollContainer.getBoundingClientRect()
@@ -171,7 +171,7 @@ export default class DragLayer {
       )
     }
 
-    if (typeof this.onDragEnd === "function") {
+    if (typeof this.onDragEnd === 'function') {
       this.onDragEnd()
     }
     // Remove the helper from the DOM
@@ -225,9 +225,9 @@ export default class DragLayer {
       )
     }
 
-    if (lockAxis === "x") {
+    if (lockAxis === 'x') {
       translate.y = 0
-    } else if (lockAxis === "y") {
+    } else if (lockAxis === 'y') {
       translate.x = 0
     }
 

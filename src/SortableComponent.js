@@ -1,11 +1,11 @@
-import React, { Component } from "react"
-import "./SortableComponent.css"
+import React, { Component } from 'react'
+import './SortableComponent.css'
 import {
   sortableContainer,
   sortableElement,
   arrayMove,
   DragLayer
-} from "./react-sortable-multiple-hoc"
+} from './react-sortable-multiple-hoc'
 
 const dragLayer = new DragLayer()
 
@@ -15,13 +15,13 @@ const SortableItem = sortableElement(props => {
       onClick={props.onSelect}
       className={props.className}
       style={{
-        padding: ".35em"
+        padding: '.35em'
       }}
     >
       <span
         style={{
-          display: "inline-block",
-          marginRight: "10px"
+          display: 'inline-block',
+          marginRight: '10px'
         }}
       >
         {props.item.ind}
@@ -46,16 +46,16 @@ const SortablePart = sortableElement(props => {
     <div
       className="sortable-part1"
       style={{
-        minWidth: "160px",
-        minHeight: "270px",
-        background: "#f2f2f2",
-        margin: "10px",
-        padding: "5px"
+        minWidth: '160px',
+        minHeight: '270px',
+        background: '#f2f2f2',
+        margin: '10px',
+        padding: '5px'
       }}
     >
       <div>
         <span
-          style={{ background: "#cc8", display: "block", padding: ".35em" }}
+          style={{ background: '#cc8', display: 'block', padding: '.35em' }}
         >
           {props.item.name}
         </span>
@@ -65,7 +65,7 @@ const SortablePart = sortableElement(props => {
         items={props.item.items}
         dragLayer={dragLayer}
         distance={3}
-        helperClass={"selected"}
+        helperClass={'selected'}
         isMultiple={true}
         helperCollision={{ top: 0, bottom: 0 }}
       />
@@ -77,13 +77,13 @@ const SortablePart = sortableElement(props => {
 const SortableListParts = sortableContainer(({ items, onSortItemsEnd }) => (
   <div
     style={{
-      display: "flex",
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "space-around",
-      background: "lightblue",
-      color: "#000",
-      padding: "2em"
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      background: 'lightblue',
+      color: '#000',
+      padding: '2em'
       // height: '800px',
       // overflow: 'auto',
     }}
@@ -116,10 +116,10 @@ const getParts = (countParts, countLessons) => {
     const lessons = []
 
     for (let j = 0; j < countLessons; j++) {
-      lessons.push("Lesson-" + (i + 1) + "-" + (j + 1))
+      lessons.push('Lesson-' + (i + 1) + '-' + (j + 1))
     }
     parts.push({
-      name: "Chapter Part",
+      name: 'Chapter Part',
       items: lessons
     })
   }
@@ -163,7 +163,7 @@ export default class SortableComponent extends Component {
         items: value.items.map((val, ind) => {
           return {
             val,
-            ind: index + 1 + "." + (ind + 1)
+            ind: index + 1 + '.' + (ind + 1)
           }
         })
       }
@@ -175,7 +175,7 @@ export default class SortableComponent extends Component {
           items={parts}
           onSortEnd={this.onSortEnd}
           onSortItemsEnd={this.onSortItemsEnd}
-          helperClass={"selected"}
+          helperClass={'selected'}
         />
       </div>
     )

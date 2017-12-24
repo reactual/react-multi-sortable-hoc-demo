@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import { findDOMNode } from "react-dom"
-import invariant from "invariant"
+import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
+import invariant from 'invariant'
 
-import { provideDisplayName } from "../utils"
+import { provideDisplayName } from '../utils'
 
 // Export Higher Order Sortable Element Component
 export default function sortableHandle(
@@ -10,7 +10,7 @@ export default function sortableHandle(
   config = { withRef: false }
 ) {
   return class extends Component {
-    static displayName = provideDisplayName("sortableHandle", WrappedComponent)
+    static displayName = provideDisplayName('sortableHandle', WrappedComponent)
 
     componentDidMount() {
       const node = findDOMNode(this)
@@ -21,14 +21,14 @@ export default function sortableHandle(
     getWrappedInstance() {
       invariant(
         config.withRef,
-        "To access the wrapped instance, you need to pass in {withRef: true} as the second argument of the SortableHandle() call"
+        'To access the wrapped instance, you need to pass in {withRef: true} as the second argument of the SortableHandle() call'
       )
 
       return this.refs.wrappedInstance
     }
 
     render() {
-      const ref = config.withRef ? "wrappedInstance" : null
+      const ref = config.withRef ? 'wrappedInstance' : null
 
       return <WrappedComponent ref={ref} {...this.props} />
     }

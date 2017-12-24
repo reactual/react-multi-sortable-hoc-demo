@@ -1,4 +1,4 @@
-import { clamp } from "../utils"
+import { clamp } from '../utils'
 
 export function distanceRect(x, y, rect) {
   const dx = x - clamp(x, rect.left, rect.right)

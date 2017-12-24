@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import PropTypes from "prop-types"
-import { findDOMNode } from "react-dom"
-import invariant from "invariant"
-import findIndex from "lodash/findIndex"
-import DragLayer from "../DragLayer"
-import Manager from "../Manager"
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { findDOMNode } from 'react-dom'
+import invariant from 'invariant'
+import findIndex from 'lodash/findIndex'
+import DragLayer from '../DragLayer'
+import Manager from '../Manager'
 import {
   closest,
   events,
@@ -12,9 +12,9 @@ import {
   vendorPrefix,
   provideDisplayName,
   omit
-} from "../utils"
-import { closestRect } from "../DragLayer/utils"
-import { arrayMove, arrayInsert } from "../index"
+} from '../utils'
+import { closestRect } from '../DragLayer/utils'
+import { arrayMove, arrayInsert } from '../index'
 
 // Export Higher Order Sortable Container Component
 export default function sortableContainer(
@@ -40,7 +40,7 @@ export default function sortableContainer(
 
       invariant(
         !(props.distance && props.pressDelay),
-        "Attempted to set both `pressDelay` and `distance` on SortableContainer, you may only use one or the other, not both at the same time."
+        'Attempted to set both `pressDelay` and `distance` on SortableContainer, you may only use one or the other, not both at the same time.'
       )
 
       this.state = {
@@ -48,25 +48,25 @@ export default function sortableContainer(
       }
     }
 
-    static displayName = provideDisplayName("sortableList", WrappedComponent)
+    static displayName = provideDisplayName('sortableList', WrappedComponent)
 
     static defaultProps = {
-      axis: "xy",
+      axis: 'xy',
       transitionDuration: 300,
       pressDelay: 0,
       pressThreshold: 5,
       distance: 0,
       useWindowAsScrollContainer: false,
       hideSortableGhost: true,
-      contentWindow: typeof window !== "undefined" ? window : null,
+      contentWindow: typeof window !== 'undefined' ? window : null,
       shouldCancelStart: function(e) {
         // Cancel sorting if the event target is an `input`, `textarea`, `select` or `option`
         const disabledElements = [
-          "input",
-          "textarea",
-          "select",
-          "option",
-          "button"
+          'input',
+          'textarea',
+          'select',
+          'option',
+          'button'
         ]
 
         if (disabledElements.indexOf(e.target.tagName.toLowerCase()) !== -1) {
@@ -74,7 +74,7 @@ export default function sortableContainer(
         }
       },
       lockToContainerEdges: false,
-      lockOffset: "50%",
+      lockOffset: '50%',
       getHelperDimensions: ({ node }) => ({
         width: node.offsetWidth,
         height: node.offsetHeight
@@ -82,7 +82,7 @@ export default function sortableContainer(
     }
 
     static propTypes = {
-      axis: PropTypes.oneOf(["x", "y", "xy"]),
+      axis: PropTypes.oneOf(['x', 'y', 'xy']),
       distance: PropTypes.number,
       dragLayer: PropTypes.object,
       lockAxis: PropTypes.string,
@@ -128,7 +128,7 @@ export default function sortableContainer(
       } = this.props
 
       this.container =
-        typeof getContainer === "function"
+        typeof getContainer === 'function'
           ? getContainer(this.getWrappedInstance())
           : findDOMNode(this)
       this.document = this.container.ownerDocument || document
@@ -140,7 +140,7 @@ export default function sortableContainer(
         left: this.scrollContainer.scrollLeft
       }
       this.contentWindow =
-        typeof contentWindow === "function" ? contentWindow() : contentWindow
+        typeof contentWindow === 'function' ? contentWindow() : contentWindow
 
       for (const key in this.events) {
         if (this.events.hasOwnProperty(key)) {
@@ -178,7 +178,7 @@ export default function sortableContainer(
       const { item } = this.manager.active
       let newIndex
 
-      if (typeof items[0] === "object") {
+      if (typeof items[0] === 'object') {
         newIndex = findIndex(items, item)
       } else {
         newIndex = items.indexOf(item)
@@ -230,7 +230,7 @@ export default function sortableContainer(
 				 * prevent subsequent 'mousemove' events from being fired
 				 * (see https://github.com/clauderic/react-sortable-hoc/issues/118)
 				 */
-        if (e.target.tagName.toLowerCase() === "a") {
+        if (e.target.tagName.toLowerCase() === 'a') {
           e.preventDefault()
         }
 
@@ -315,8 +315,8 @@ export default function sortableContainer(
         this.index = index
         this.newIndex = index
         this.axis = {
-          x: axis.indexOf("x") >= 0,
-          y: axis.indexOf("y") >= 0
+          x: axis.indexOf('x') >= 0,
+          y: axis.indexOf('y') >= 0
         }
 
         this.initialScroll = {
@@ -331,12 +331,12 @@ export default function sortableContainer(
 
         if (hideSortableGhost) {
           this.sortableGhost = node
-          node.style.visibility = "hidden"
+          node.style.visibility = 'hidden'
           node.style.opacity = 0
         }
 
         if (helperClass && !this.props.isMultiple) {
-          this.dragLayer.helper.classList.add(...helperClass.split(" "))
+          this.dragLayer.helper.classList.add(...helperClass.split(' '))
         }
 
         this.setState({
@@ -411,15 +411,15 @@ export default function sortableContainer(
       const { hideSortableGhost, onSortEnd, onMultipleSortEnd } = this.props
 
       if (!this.manager.active) {
-        console.warn("there is no active node", e)
+        console.warn('there is no active node', e)
 
         return
       }
       const { collection } = this.manager.active
 
       if (hideSortableGhost && this.sortableGhost) {
-        this.sortableGhost.style.visibility = ""
-        this.sortableGhost.style.opacity = ""
+        this.sortableGhost.style.visibility = ''
+        this.sortableGhost.style.opacity = ''
       }
 
       const nodes = this.manager.refs[collection]
@@ -432,8 +432,8 @@ export default function sortableContainer(
         node.edgeOffset = null
 
         // Remove the transforms / transitions
-        el.style[`${vendorPrefix}Transform`] = ""
-        el.style[`${vendorPrefix}TransitionDuration`] = ""
+        el.style[`${vendorPrefix}Transform`] = ''
+        el.style[`${vendorPrefix}TransitionDuration`] = ''
       }
 
       // Stop autoscroll
@@ -457,7 +457,7 @@ export default function sortableContainer(
           items: arrayMove(this.state.items, this.index, -1)
         })
       } else if (!this.props.isMultiple) {
-        if (typeof onSortEnd === "function") {
+        if (typeof onSortEnd === 'function') {
           onSortEnd(
             {
               oldIndex: this.dragLayer.startItemID,
@@ -469,7 +469,7 @@ export default function sortableContainer(
             e
           )
         }
-      } else if (typeof onMultipleSortEnd === "function") {
+      } else if (typeof onMultipleSortEnd === 'function') {
         onMultipleSortEnd(
           {
             newIndex: this.newIndex,
@@ -501,7 +501,7 @@ export default function sortableContainer(
       })
       const { onSortSwap } = this.props
 
-      if (typeof onSortSwap === "function") {
+      if (typeof onSortSwap === 'function') {
         onSortSwap({
           index,
           item
@@ -542,8 +542,8 @@ export default function sortableContainer(
 
       invariant(
         lockOffset.length === 2,
-        "lockOffset prop of SortableContainer should be a single " +
-          "value or an array of exactly two values. Given %s",
+        'lockOffset prop of SortableContainer should be a single ' +
+          'value or an array of exactly two values. Given %s',
         lockOffset
       )
 
@@ -558,14 +558,14 @@ export default function sortableContainer(
     getLockPixelOffset(lockOffset) {
       let offsetX = lockOffset
       let offsetY = lockOffset
-      let unit = "px"
+      let unit = 'px'
 
-      if (typeof lockOffset === "string") {
+      if (typeof lockOffset === 'string') {
         const match = /^[+-]?\d*(?:\.\d*)?(px|%)$/.exec(lockOffset)
 
         invariant(
           match !== null,
-          "lockOffset value should be a number or a string of a " +
+          'lockOffset value should be a number or a string of a ' +
             'number followed by "px" or "%". Given %s',
           lockOffset
         )
@@ -576,11 +576,11 @@ export default function sortableContainer(
 
       invariant(
         isFinite(offsetX) && isFinite(offsetY),
-        "lockOffset value should be a finite. Given %s",
+        'lockOffset value should be a finite. Given %s',
         lockOffset
       )
 
-      if (unit === "%") {
+      if (unit === '%') {
         offsetX = offsetX * this.dragLayer.width / 100
         offsetY = offsetY * this.dragLayer.height / 100
       }
@@ -701,7 +701,7 @@ export default function sortableContainer(
 						 * so we need to update the reference to the new node just to be safe.
 						 */
             this.sortableGhost = node
-            node.style.visibility = "hidden"
+            node.style.visibility = 'hidden'
             node.style.opacity = 0
           }
           continue
@@ -941,37 +941,37 @@ export default function sortableContainer(
     getWrappedInstance() {
       invariant(
         config.withRef,
-        "To access the wrapped instance, you need to pass in {withRef: true} as the second argument of the SortableContainer() call"
+        'To access the wrapped instance, you need to pass in {withRef: true} as the second argument of the SortableContainer() call'
       )
 
       return this.refs.wrappedInstance
     }
 
     render() {
-      const ref = config.withRef ? "wrappedInstance" : null
+      const ref = config.withRef ? 'wrappedInstance' : null
       const props = {
         ...omit(
           this.props,
-          "contentWindow",
-          "useWindowAsScrollContainer",
-          "distance",
-          "helperClass",
-          "hideSortableGhost",
-          "transitionDuration",
-          "useDragHandle",
-          "pressDelay",
-          "pressThreshold",
-          "shouldCancelStart",
-          "onSortStart",
-          "onSortSwap",
-          "onSortMove",
-          "onSortEnd",
-          "axis",
-          "lockAxis",
-          "lockOffset",
-          "lockToContainerEdges",
-          "getContainer",
-          "getHelperDimensions"
+          'contentWindow',
+          'useWindowAsScrollContainer',
+          'distance',
+          'helperClass',
+          'hideSortableGhost',
+          'transitionDuration',
+          'useDragHandle',
+          'pressDelay',
+          'pressThreshold',
+          'shouldCancelStart',
+          'onSortStart',
+          'onSortSwap',
+          'onSortMove',
+          'onSortEnd',
+          'axis',
+          'lockAxis',
+          'lockOffset',
+          'lockToContainerEdges',
+          'getContainer',
+          'getHelperDimensions'
         )
       }
 
@@ -980,8 +980,8 @@ export default function sortableContainer(
       return (
         <div
           style={{
-            position: "relative",
-            userSelect: "none"
+            position: 'relative',
+            userSelect: 'none'
           }}
         >
           <WrappedComponent ref={ref} {...props} />

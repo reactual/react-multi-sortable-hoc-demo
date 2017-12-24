@@ -1,13 +1,13 @@
-import { Component, PropTypes } from "react"
-import debounce from "lodash/debounce"
+import { Component, PropTypes } from 'react'
+import debounce from 'lodash/debounce'
 import {
   closestNodeIndex,
   center,
   distanceRect,
   overlap,
   translateRect
-} from "./utils"
-import { closestChild, clamp } from "../utils"
+} from './utils'
+import { closestChild, clamp } from '../utils'
 
 export default class SortableGroup extends Component {
   static propTypes = {

@@ -1,4 +1,4 @@
-import { clamp } from "../utils"
+import { clamp } from '../utils'
 
 // TODO: Implement using slice instead of splice to avoid side-effects
 export function moveGroupItems(items, { oldIndex, oldKey, newIndex, newKey }) {
