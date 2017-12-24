@@ -11,3 +11,19 @@ Based on code from [mixa9269/react-sortable-multiple-hoc](https://github.com/mix
 Reference - feat: Support for dragging items between Lists [Issue #138](https://github.com/clauderic/react-sortable-hoc/pull/138)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
+
+### Installation
+
+```bash
+# clone and cd into repo
+
+yarn install
+yarn start
+
+# open http://localhost:3000 in browser
+
+# for optimized bundle
+yarn build
+
+```
