@@ -15,7 +15,10 @@ const SortableItem = sortableElement(props => {
       onClick={props.onSelect}
       className={props.className}
       style={{
-        padding: '.35em'
+        padding: '.5em',
+        margin: '.2em',
+        width: '160px',
+        background: 'darkgrey'
       }}
     >
       <span
@@ -32,7 +35,20 @@ const SortableItem = sortableElement(props => {
 })
 
 const SortableListItems = sortableContainer(({ items }) => (
-  <div>
+  <div
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      alignItems: 'start',
+      justifyContent: 'space-between',
+      // background: 'lightblue',
+      color: '#000',
+      padding: '1em'
+      // height: '800px',
+      // overflow: 'auto',
+    }}
+    >
     {items.map((value, index) => (
       <SortableItem key={index} index={index} item={value} />
     ))}
@@ -46,10 +62,10 @@ const SortablePart = sortableElement(props => {
     <div
       className="sortable-part1"
       style={{
-        minWidth: '160px',
+        width: '400px',
         minHeight: '270px',
         background: '#f2f2f2',
-        margin: '10px',
+        margin: '5px',
         padding: '5px'
       }}
     >
@@ -64,10 +80,11 @@ const SortablePart = sortableElement(props => {
         {...props}
         items={props.item.items}
         dragLayer={dragLayer}
-        distance={3}
+        transitionDuration={320}
+        distance={5}
         helperClass={'selected'}
         isMultiple={true}
-        helperCollision={{ top: 0, bottom: 0 }}
+        helperCollision={{ top: 5, bottom: 5, left: 10, right: 10 }}
       />
     </div>
   )
@@ -131,7 +148,7 @@ export default class SortableComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      parts: getParts(20, 5)
+      parts: getParts(2, 5)
     }
   }
   onSortEnd = ({ oldIndex, newIndex }) => {
