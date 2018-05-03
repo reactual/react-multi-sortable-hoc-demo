@@ -65,8 +65,9 @@ const SortablePart = sortableElement(props => {
         width: '400px',
         minHeight: '270px',
         background: '#f2f2f2',
-        margin: '5px',
-        padding: '5px'
+        margin: '1em',
+        padding: '5px',
+        // transition: 'all 1s ease'
       }}
     >
       <div>
@@ -97,11 +98,12 @@ const SortableListParts = sortableContainer(({ items, onSortItemsEnd }) => (
       display: 'flex',
       flexDirection: 'row',
       flexWrap: 'wrap',
-      justifyContent: 'space-around',
+      justifyContent: 'flex-start',
       background: 'lightblue',
+      // alignItems: 'flexStart',
       color: '#000',
-      padding: '2em'
-      // height: '800px',
+      padding: '2em',
+      // height: '400px',
       // overflow: 'auto',
     }}
   >
